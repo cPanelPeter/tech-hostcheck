@@ -1,10 +1,14 @@
 #!/bin/bash
 
+ver="1.1"
+echo "Hostcheck version ${ver}"
+
 if [ $# == 0 ];
 then
     echo "Usage: hostcheck [ domainname.tld | ip.add.res.s ]";
     exit;
 fi
 
-curl -s http://ip-api.com/$1
+#curl -s http://ip-api.com/$1
+curl -s http://ip-api.com/$1 | tr -d '{' | tr -d '}' | tr -d '"' | sed -r 's/,$//'
 
