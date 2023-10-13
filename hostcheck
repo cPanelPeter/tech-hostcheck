@@ -6,8 +6,5 @@ then
     exit;
 fi
 
-output=$(curl -s http://ip-api.com/$1)
-echo $output | sed -e 's/[{}]/''/g' | awk -v k="text" '{n=split($0,a,","); for (i=1; i<=n; i++) print a[i]}'
+curl -s http://ip-api.com/$1
 
-# Note: I tried several different parsers including jq, json_pp, pjson, ruby_json, python -mjson.tool etc... None of them would work.
-# I finally resorted to the above sed/awk line which although ugly and not ideal, works fine.
